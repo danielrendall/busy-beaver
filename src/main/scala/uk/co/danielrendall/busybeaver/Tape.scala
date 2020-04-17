@@ -21,5 +21,5 @@ case class Tape(lowIndex: Int, highIndex: Int, ones: Set[Int]) {
 
 
 object Tape {
-  def init: Tape = Tape(0, 0, Set.empty)
+  def apply(): Tape = Tape(0, 0, Set.empty)
 }

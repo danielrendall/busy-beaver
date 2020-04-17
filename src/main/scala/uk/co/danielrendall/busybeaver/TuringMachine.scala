@@ -39,7 +39,7 @@ case class TuringMachine(tape: Tape, position: Int, state: Char, stateMap: Map[C
 object TuringMachine {
 
   def main(args: Array[String]): Unit = {
-    val tm: Option[TuringMachine] = Some(init)
+    val tm: Option[TuringMachine] = Some(TuringMachine())
     val list = LazyList.iterate(tm) {
       case Some(value) =>
         value.run
@@ -49,11 +49,11 @@ object TuringMachine {
     list.find(_.isEmpty)
   }
 
-  def init: TuringMachine = {
+  def apply(): TuringMachine = {
     // Add the halted state here
     val states: Seq[State] = getStates ++ Seq(Halted)
     val stateMap = states.map(s => s.identifier -> s).toMap
-    TuringMachine(Tape.init, 0, states.head.identifier, stateMap, 0)
+    TuringMachine(Tape(), 0, states.head.identifier, stateMap, 0)
   }
 
   def getStates: Seq[State] = getStates5
